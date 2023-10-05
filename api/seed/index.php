@@ -14,22 +14,20 @@ switch ($request_method) {
     case 'GET':
         $con->start();
         $https = $con->https;
-        $json = file_get_contents($https . "/models/models.json");
-        $allModel = json_decode($json);
-        foreach ($allModel as $item) {
-            $jsonModel = file_get_contents($https . "/models/" . $item . "-model.json");
-            $model = json_decode($jsonModel);
-            $api->createTable($model);
-            $api->truncateTable($model);
-        }
+
+        $jsonModel = file_get_contents($https . "/models/" . $_GET['seed'] . "-model.json");
+        $model = json_decode($jsonModel);
+
+        $json = file_get_contents($https . "/seeds/" . $_GET['seed'] . ".json");
+        $seed = json_decode($json);
+        $api->seed($model, $seed);
 
         $con->commit();
 
         $response = array(
-            'message' => 'Model Migration Successfully.',
+            'message' => 'Seeding Successfully.',
             'data' => []
         );
-
         http_response_code(200);
         header("Content-Type: application/json");
         echo json_encode($response);

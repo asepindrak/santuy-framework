@@ -1,0 +1,20 @@
+[
+    {
+        "categoryId": "1",
+        "plu": "8994907000909",
+        "name": "ABC BUMBU NASI GORENG",
+        "cost": "1000",
+        "price": "1500",
+        "qty": "0",
+        "unit": "Pcs"
+    },
+    {
+        "categoryId": "2",
+        "plu": "8992628605151",
+        "name": "AMANDA MARGARINE 200 ML",
+        "cost": "4500",
+        "price": "4000",
+        "qty": "0",
+        "unit": "Pcs"
+    }
+]
