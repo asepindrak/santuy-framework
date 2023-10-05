@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Generate Web Login</title>
+
+        <!-- add bootstrap 5 css file -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="../resources/global.css" rel="stylesheet">
+        <!-- add bootstrap 5 js file -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+        <!-- add bundel js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+            integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../config.js"></script>
+        <script src="index.js"></script>
+
+    </head>
+
+    <body ng-controller="AppController as app">
+
+        <!-- <section id="header" ng-include="'./components/header.html'"></section> -->
+
+        <section class="container">
+            <div class="login-bg p-3">
+                <center>
+                    <div class="login-logo rounded-div d-flex justify-content-center align-items-center">
+                        <center>
+                            <img src="../img/logo.png" width="80" height="80" />
+                        </center>
+                    </div>
+                </center>
+                <div class="mb-4">
+                    <p class="text-center">Connecting you to your digital realm. Sign in for a personalized
+                        experience</p>
+                </div>
+                <div class="mb-4">
+                    <input type="text" class="form-control rounded" ng-model="app.policy_no" id="policy_no"
+                        name="policy_no" placeholder="No Polis" required>
+                </div>
+                <div class="mb-4 input-group">
+                    <input ng-if="!app.isShow" type="password" class="form-control rounded" ng-model="app.password"
+                        id="password" name="password" placeholder="Password" required>
+                    <input ng-if="app.isShow" type="text" class="form-control rounded" ng-model="app.password"
+                        id="password" name="password" placeholder="Password" required>
+                    <span ng-if="!app.isShow" class="suffix" ng-click="app.show()"><i
+                            class="fa fa-eye-slash"></i></span>
+                    <span ng-if="app.isShow" class="suffix" ng-click="app.show()"><i class="fa fa-eye"></i></span>
+                </div>
+
+                <div ng-if="app.error!=''" class="mb-4">
+                    <span class="badge bg-danger">{{app.error}}</span>
+                </div>
+
+                <div class="text-end"><a href="#" class="no-underline text-grey">Forgot password?</a></div>
+
+                <button type="submit" class="btn btn-primary gradient-button full mt-3" ng-click="app.login()">
+                    <span ng-if="!app.isLoading">LOGIN</span>
+                    <div ng-if="app.isLoading" class="spinner-grow text-secondary" role="status">
+                    </div>
+                </button>
+
+                <div class="text-center mt-2">Don’t have an account ? <a href="../register/">Register Now</a></div>
+            </div>
+
+        </section>
+
+    </body>
+
+</html>

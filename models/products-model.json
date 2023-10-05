@@ -1,0 +1,61 @@
+{
+    "name": "products",
+    "icon": "AiOutlineFileAdd",
+    "columns": [
+        {
+            "name": "id",
+            "title": "ID",
+            "dataType": "INT AUTO_INCREMENT PRIMARY KEY",
+            "inputType": "number"
+        },
+        {
+            "name": "categoryId",
+            "title": "Category",
+            "dataType": "INT NULL",
+            "inputType": "number",
+            "relation": "categories.id"
+        },
+        {
+            "name": "name",
+            "title": "Item Name",
+            "dataType": "VARCHAR(100) NULL",
+            "inputType": "text"
+        },
+        {
+            "name": "plu",
+            "title": "PLU",
+            "dataType": "VARCHAR(50) NULL",
+            "inputType": "text"
+        },
+        {
+            "name": "unit",
+            "title": "Unit",
+            "dataType": "VARCHAR(30) NULL",
+            "inputType": "text"
+        },
+        {
+            "name": "cost",
+            "title": "Cost",
+            "dataType": "INT NULL",
+            "inputType": "number"
+        },
+        {
+            "name": "price",
+            "title": "Price",
+            "dataType": "INT NULL",
+            "inputType": "number"
+        },
+        {
+            "name": "qty",
+            "title": "Qty",
+            "dataType": "INT NULL",
+            "inputType": "number"
+        }
+    ],
+    "includes": [
+        {
+            "model": "categories",
+            "relation": "categoryId"
+        }
+    ]
+}
