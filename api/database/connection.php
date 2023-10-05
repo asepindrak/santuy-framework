@@ -8,6 +8,8 @@ use mysqli;
 class Connection
 {
     public $mysqli;
+    public $https;
+    public $db;
     public function __construct()
     {
         require_once '../vendor/autoload.php';
@@ -17,6 +19,8 @@ class Connection
         $db = $_ENV['DATABASE'];
         $user = $_ENV['USERNAME'];
         $pass = $_ENV['PASSWORD'];
+        $this->https = $_ENV['HTTPS'];
+        $this->db = $db;
         $this->mysqli = new mysqli($host, $user, $pass, $db);
         if ($this->mysqli->connect_errno) {
             exit();
@@ -36,6 +40,18 @@ class Connection
                 $this->rollback();
             }
             $result = $statement->get_result();
+            return $result;
+        } catch (\Throwable $th) {
+            $this->rollback();
+            throw $th;
+        }
+    }
+
+    public function migrate($query)
+    {
+        try {
+            $result = $this->mysqli->query($query);
+
             return $result;
         } catch (\Throwable $th) {
             $this->rollback();
